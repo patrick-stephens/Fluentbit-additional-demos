@@ -14,6 +14,8 @@ function getOS()
   return osname or "Windows"
 end
 
+local OS = getOS()
+
 --[[ Pretty printer util for outputting the payload - here to help with diagnostics if needed--]]
 function printRecord(record)
   for key, value in pairs(record) do
@@ -46,7 +48,7 @@ function cb_osCommand(tag, timestamp, record)
     command = record[commadAttribute]
 
     print("Will execute " .. command)
-    if (getOS() == "Windows") then
+    if (OS == "Windows") then
       command = "call cmd_" .. command .. ".bat"
     else
       command = "source cmd_" .. command .. ".sh"
